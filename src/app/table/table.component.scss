@@ -1,0 +1,30 @@
+.mouse-pointer {
+  cursor: pointer
+}
+.app-table {
+  &__table-data {
+    text-align: center;
+    margin: 20px;
+  }
+
+  &__map {
+    position: relative;
+
+     agm-map {
+      height: 100px;
+       visibility: hidden;
+     }
+    &:hover agm-map {
+      visibility: visible;
+    }
+  }
+}
+
+.app-filter-field {
+  &__search {
+    margin: 20px;
+    width: auto;
+    border-radius: 10px;
+  }
+}
+

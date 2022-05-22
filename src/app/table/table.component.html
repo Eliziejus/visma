@@ -1,0 +1,48 @@
+<div class="app-filter-field">
+  <div class="app-filter-field__search">
+    <input type="text" class="form-control" id="search" ([ngModel])="searchValue" placeholder="Search">
+  </div>
+</div>
+
+<button class="btn btn-danger m-4" (click)="deleteAll()">Delete Table Data</button>
+<button class="btn btn-outline-primary m-2" (click)="addCustomer()">Add</button>
+
+
+<table class="table table-bordered app-table">
+  <thead class="text-center">
+  <tr>
+    <th [appSort]="customersTable"
+        class="mouse-pointer sort-by"
+        data-order="desc"
+        data-name="id" scope="col">Id <i class="fas fa-sort"></i>
+    </th>
+    <th scope="col">Full Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">City</th>
+    <th scope="col">Street</th>
+    <th scope="col">House number</th>
+    <th scope="col">Zip code</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of customersTable | searchFilterPipe: searchValue let i = index" class="app-table__table-data">
+    <th scope="row" data-label="Id">{{item.id}}</th>
+    <td data-label="fullName">{{item.fullName}}</td>
+    <td data-label="email">{{item.email}}</td>
+    <td data-label="city">{{item.address.city}}</td>
+    <td data-label="street">{{item.address.street}}</td>
+    <td data-label="number">{{item.address.houseNumber}}</td>
+    <td data-label="zipCode" class="app-table__map">{{item.address.zipCode}}
+      <agm-map [latitude]="latitude" [longitude]="longitude">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+      </agm-map>
+    </td>
+
+    <td>
+      <button class="btn btn-outline-primary m-2" (click)="editCustomer(item.id)">Edit</button>
+      <button class="btn btn-outline-danger" (click)="deleteProfileItem(i)"> Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

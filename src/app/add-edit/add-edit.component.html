@@ -1,0 +1,35 @@
+<form [formGroup]="customer" (ngSubmit)="submit()" class="app-add-edit">
+  <div class="form-group">
+    <label for="fullName">Full Name</label>
+    <input type="text" class="form-control" formControlName="fullName" id="fullName" placeholder="full Name">
+    <small class="form-text alert-danger" *ngIf="this.customer.controls['fullName'].invalid && this.customer.controls['fullName'].touched">Name and Surname is required.</small>
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" formControlName="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+    <small  class="form-text alert-danger" *ngIf="this.customer.controls['email'].invalid && this.customer.controls['email'].touched">Email is required</small>
+  </div>
+  <div class="form-group" formGroupName="address">
+    <h5>Address:</h5>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" class="form-control" formControlName="city" id="city" placeholder="city">
+      <small class="form-text alert-danger">City is required</small>
+    </div>
+    <div class="form-group">
+      <label for="street">Street</label>
+      <input type="text" class="form-control" formControlName="street" id="street" placeholder="street">
+    </div>
+    <div class="form-group">
+      <label for="houseNumber">House Number</label>
+      <input type="text" class="form-control" formControlName="houseNumber" id="houseNumber" placeholder="house Number">
+    </div>
+    <div class="form-group">
+      <label for="zipCode">Zip Code</label>
+      <input type="text" class="form-control" formControlName="zipCode" id="zipCode" placeholder="zipCode">
+      <small class="form-text alert-danger">Zip Code is required</small>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" *ngIf="!formValue">Submit</button>
+  <button type="submit" class="btn btn-primary" *ngIf="formValue">Update</button>
+</form>
